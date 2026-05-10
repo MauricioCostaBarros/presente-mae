@@ -1,80 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Surpresa de Dia das Mães</title>
+    <style>
+      body { 
+        background: #1a1a1a; 
+        display: flex; 
+        align-items: center; 
+        justify-content: center; 
+        height: 100vh; 
+        margin: 0; 
+        font-family: 'Segoe UI', Roboto, sans-serif;
+        overflow: hidden;
+      }
+      .card { 
+        position: relative; 
+        width: 90vw; /* Ocupa 90% da largura da tela do celular */
+        max-width: 360px;
+        height: 300px; /* Aumentado para dar mais presença */
+        background: white; 
+        border-radius: 20px; 
+        overflow: hidden; 
+        box-shadow: 0 15px 50px rgba(0,0,0,0.6); 
+      }
+      .base-content { 
+        display: flex; 
+        flex-direction: column; 
+        align-items: center; 
+        justify-content: center; 
+        height: 100%; 
+        text-align: center; 
+        background: #fff; 
+        padding: 25px;
+        box-sizing: border-box;
+      }
+      h1 { color: #d63384; font-size: 1.5rem; margin: 10px 0; font-weight: 800; line-height: 1.3; }
+      .obs { color: #888; font-size: 12px; margin-bottom: 20px; font-style: italic; line-height: 1.4; }
+      
+      #btn-texto {
+        display: none; 
+        background: #d63384;
+        color: white;
+        border: none;
+        padding: 15px 35px; /* Botão maior para o polegar */
+        border-radius: 50px;
+        font-weight: bold;
+        cursor: pointer;
+        font-size: 16px;
+        box-shadow: 0 4px 15px rgba(214, 51, 132, 0.4);
+        animation: pulse 1.5s infinite;
+      }
 
-<style>
-  body { 
-    background: #1a1a1a; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    height: 100vh; 
-    margin: 0; 
-    font-family: 'Segoe UI', Roboto, sans-serif;
-  }
-  .card { 
-    position: relative; 
-    width: 320px; 
-    height: 260px; /* Aumentado para acomodar o texto novo */
-    background: white; 
-    border-radius: 20px; 
-    overflow: hidden; 
-    box-shadow: 0 15px 50px rgba(0,0,0,0.6); 
-  }
-  .base-content { 
-    display: flex; 
-    flex-direction: column; 
-    align-items: center; 
-    justify-content: center; 
-    height: 100%; 
-    text-align: center; 
-    background: #fff; 
-    padding: 20px;
-    box-sizing: border-box;
-  }
-  h1 { color: #d63384; font-size: 1.2rem; margin: 10px 0; font-weight: 800; line-height: 1.3; }
-  .obs { color: #888; font-size: 11px; margin-bottom: 15px; font-style: italic; line-height: 1.2; }
-  
-  #btn-texto {
-    display: none; 
-    background: #d63384;
-    color: white;
-    border: none;
-    padding: 12px 30px;
-    border-radius: 50px;
-    font-weight: bold;
-    cursor: pointer;
-    font-size: 14px;
-    box-shadow: 0 4px 15px rgba(214, 51, 132, 0.4);
-    animation: pulse 1.5s infinite;
-  }
+      @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+      }
 
-  @keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
-  }
-
-  canvas { 
-    position: absolute; 
-    top: 0; left: 0; 
-    touch-action: none; 
-    transition: opacity 0.6s;
-    z-index: 2;
-  }
-  
-  #modal-texto {
-    display: none;
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: #fff;
-    z-index: 100;
-    padding: 40px 30px;
-    box-sizing: border-box;
-    overflow-y: auto;
-  }
-</style>
+      canvas { 
+        position: absolute; 
+        top: 0; left: 0; 
+        touch-action: none; 
+        transition: opacity 0.6s;
+        z-index: 2;
+        width: 100%;
+        height: 100%;
+      }
+      
+      #modal-texto {
+        display: none;
+        position: fixed;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: #fff;
+        z-index: 100;
+        padding: 50px 30px;
+        box-sizing: border-box;
+        overflow-y: auto;
+      }
+    </style>
+</head>
+<body>
 
 <div class="card">
   <div class="base-content">
-    <span style="font-size: 10px; color: #aaa; letter-spacing: 2px;">SURPRESA DETECTADA</span>
+    <span style="font-size: 11px; color: #aaa; letter-spacing: 2px;">SURPRESA DETECTADA</span>
     <h1>PARABÉNS! VOCÊ GANHOU UM VALE SHEIN</h1>
     <p class="obs">OBS: Não aceito em utensílios domésticos ou de uso coletivo.</p>
     <button id="btn-texto" onclick="document.getElementById('modal-texto').style.display='block'">CLIQUE AQUI</button>
@@ -83,18 +94,17 @@
 </div>
 
 <div id="modal-texto">
-  <h2 style="color: #d63384; font-size: 1.8rem;">Nesse dia…</h2>
-  <div style="line-height: 1.8; color: #444; font-size: 16px;">
-    <p>Mãe, este essa pequena homenagem e lembrança é para você, que se dedica tanto a nós. Apenas uma lembrancinha, embora você mereça muito mais do que posso oferecer.</p>
+  <h2 style="color: #d63384; font-size: 2rem;">Nesse dia…</h2>
+  <div style="line-height: 1.8; color: #444; font-size: 18px;">
+    <p>Mãe, esta pequena homenagem e lembrança é para você, que se dedica tanto a nós. Apenas uma lembrancinha, embora você mereça muito mais do que posso oferecer.</p>
     <p>Criei este pequeno espaço para te agradecer por ser nossa base e por nutrir a nossa família com tanto carinho. Você contagia a todos nós com seu jeito, nunca perca essa essência, todos te amamos! Espero que goste dessa lembrança e escolha com carinho.</p>
     <p><b>Te amo muito! Feliz Dia das Mães!</b></p>
   </div>
-  <button onclick="document.getElementById('modal-texto').style.display='none'" style="margin-top:30px; border: 2px solid #d63384; background: none; color: #d63384; padding: 10px 20px; border-radius: 50px; font-weight: bold;">← Voltar</button>
+  <button onclick="document.getElementById('modal-texto').style.display='none'" style="margin-top:40px; border: 2px solid #d63384; background: none; color: #d63384; padding: 15px 25px; border-radius: 50px; font-weight: bold; font-size: 16px;">← Voltar</button>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/dist/confetti.browser.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 <script>
-  // Script para garantir que o confetti funcione mesmo com carregamento lento da lib externa
   function dispararConfete() {
     if (typeof confetti === 'function') {
       confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
@@ -103,15 +113,20 @@
 
   const canvas = document.getElementById('scratch');
   const ctx = canvas.getContext('2d');
-  canvas.width = 320; canvas.height = 260;
-
-  ctx.fillStyle = '#C0C0C0';
-  ctx.fillRect(0, 0, 320, 260);
   
-  ctx.fillStyle = '#444'; 
-  ctx.font = 'bold 16px Arial'; 
-  ctx.textAlign = 'center';
-  ctx.fillText('RASPE AQUI COM O DEDO', 160, 135);
+  // Ajuste dinâmico de resolução do canvas
+  function setupCanvas() {
+    canvas.width = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+    ctx.fillStyle = '#C0C0C0';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = '#444'; 
+    ctx.font = 'bold 18px Arial'; 
+    ctx.textAlign = 'center';
+    ctx.fillText('RASPE COM O DEDO', canvas.width/2, canvas.height/2);
+  }
+
+  window.addEventListener('load', setupCanvas);
 
   let raspado = false;
 
@@ -123,7 +138,7 @@
     
     ctx.globalCompositeOperation = 'destination-out';
     ctx.beginPath();
-    ctx.arc(clientX - rect.left, clientY - rect.top, 35, 0, Math.PI * 2);
+    ctx.arc(clientX - rect.left, clientY - rect.top, 40, 0, Math.PI * 2);
     ctx.fill();
 
     if (!raspado) {
@@ -135,10 +150,13 @@
           document.getElementById('btn-texto').style.display = 'block';
           dispararConfete();
         }, 600);
-      }, 3000); 
+      }, 3500); 
     }
   }
 
   canvas.addEventListener('mousemove', scratch);
   canvas.addEventListener('touchmove', scratch);
 </script>
+
+</body>
+</html>
